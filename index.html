@@ -43,13 +43,25 @@
         </main>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
     <script>
+
+        const songs = [
+            {
+                gameName: 'Final Fantasy XV',
+                songName: 'Somnus Ultima',
+                year: '2016',
+                file: 'FFXVSomnusUltima',
+                waveColor: 'blue',
+                progressColor: 'white'
+            }
+        ];
+
         const wavesurfer = WaveSurfer.create({
             container: '#waveform',
             waveColor: 'violet',
             progressColor: 'purple'
         });
 
-        wavesurfer.load('/music/violin.wav');
+        wavesurfer.load('/music/WindWaker.wav');
         wavesurfer.on('ready', () => {
             //wavesurfer.play();
         });
