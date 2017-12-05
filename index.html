@@ -6,11 +6,41 @@
 
   <title>Games in time</title>
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <style>
+      html,body {
+          margin: 0px;
+          padding: 0px;
+          height: 100%;
+          width: 100%;
+          overflow: hidden;
+      }
+      body {
+        background: black;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      #waveform {
+          width: 100%;
+      }
+
+      main {
+          color: white;
+          font-family: sans-serif;
+          text-align: center;
+          width: 100%;
+      }
+  </style>
 </head>
 
 <body>
+        <main>
+            <h1>Game Name</h1>
+            <h2>Song Name</h2>
+            <h3>Year</h3>
         <div id="waveform"></div>
+        </main>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
     <script>
         const wavesurfer = WaveSurfer.create({
@@ -21,7 +51,7 @@
 
         wavesurfer.load('/music/violin.wav');
         wavesurfer.on('ready', () => {
-            wavesurfer.play();
+            //wavesurfer.play();
         });
     </script>
 </body>
