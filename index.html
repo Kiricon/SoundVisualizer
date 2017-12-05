@@ -39,7 +39,8 @@
             <h1 id="gameName">Game Name</h1>
             <h2 id="songName">Song Name</h2>
             <h3 id="year">Year</h3>
-        <div id="waveform"></div>
+            <h3 id="loading"></h3>
+            <div id="waveform"></div>
         </main>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
     <script>
@@ -210,13 +211,19 @@
             progressColor: obj.progressColor
         });
 
+
         gameName.innerHTML = obj.gameName;
         songName.innerHTML = obj.songName;
         year.innerHTML = obj.year;
 
         wavesurfer.load(`/music/${obj.file}.wav`);
-        wavesurfer.on('ready', () => {
-            wavesurfer.play();
+        wavesurfer.on('ready', wavesurfer.play.bind(wavesurfer));
+        wavesurfer.on('loading', (percent) => {
+            if(percent != 100) {
+                loading.innerHTML = `${percent}% loaded...`;
+            }else {
+                loading.style.display = 'none';
+            }
         });
     </script>
 </body>
