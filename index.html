@@ -15,7 +15,7 @@
           overflow: hidden;
       }
       body {
-        background: black;
+        background: #222;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -36,9 +36,9 @@
 
 <body>
         <main>
-            <h1>Game Name</h1>
-            <h2>Song Name</h2>
-            <h3>Year</h3>
+            <h1 id="gameName">Game Name</h1>
+            <h2 id="songName">Song Name</h2>
+            <h3 id="year">Year</h3>
         <div id="waveform"></div>
         </main>
     <script src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
@@ -52,18 +52,171 @@
                 file: 'FFXVSomnusUltima',
                 waveColor: 'blue',
                 progressColor: 'white'
+            },
+            {
+                gameName: 'Space Invaders',
+                songName: 'Background Music',
+                year: '1978',
+                file: 'SpaceInvadersBackgroundMusic',
+                waveColor: 'Yellow',
+                progressColor: 'Black'
+            },
+            {
+                gameName: 'Pac-Man',
+                songName: 'Original Song',
+                year: '1980',
+                file: 'PacManOriginalSong',
+                waveColor: 'Yellow',
+                progressColor: 'Blue'
+            },
+            {
+                gameName: 'Snafu',
+                songName: 'Original Music',
+                year: '1981',
+                file: 'SnafuMusic',
+                waveColor: 'Red',
+                progressColor: 'Blue'
+            },
+            {
+                gameName: 'Super Mario Bros',
+                songName: 'Main Theme',
+                year: '1985',
+                file: 'SuperMarioBrosMainTheme',
+                waveColor: 'Red',
+                progressColor: 'Brown'
+            },
+            {
+                gameName: 'The Legend Of Zelda',
+                songName:"Title Screen!",
+                year: '1987',
+                file: 'LegendOfZeldaTitleScreen!',
+                waveColor: 'Red',
+                progressColor: 'Black'
+            },
+            {
+                gameName: 'Final Fantasy',
+                songName:"Opening Theme",
+                year: '1987',
+                file: 'FFIOpeningTheme',
+                waveColor: 'Red',
+                progressColor: 'White'
+            },
+            {
+                gameName: 'Final Fantasy VI',
+                songName:"Terra",
+                year: '1999',
+                file: 'FFVITerra',
+                waveColor: 'Green',
+                progressColor: 'Yellow'
+            },
+            {
+                gameName: 'Resident Evil',
+                songName:"First Floor Mansion",
+                year: '1996',
+                file: 'ResidentEvilFirstFloorMansion',
+                waveColor: 'Red',
+                progressColor: 'Black'
+            },
+            {
+                gameName: 'Final Fantasy VII',
+                songName:"Cinco De Chocobo",
+                year: '1997',
+                file: 'FFVIICincoDeChocobo',
+                waveColor: 'Blue',
+                progressColor: 'Green'
+            },
+            {
+                gameName: 'The Legend of Zelda: Ocarina of Time',
+                songName:"Lost Woods",
+                year: '1998',
+                file: 'OcarinaOfTimeLostWoods',
+                waveColor: 'Red',
+                progressColor: 'Green'
+            },
+            {
+                gameName: 'Kingdom Hearts',
+                songName:"This Is Halloween",
+                year: '2002',
+                file: 'KH1ThisIsHalloween',
+                waveColor: 'Blue',
+                progressColor: 'Black'
+            },
+            {
+                gameName: 'Final Fantasy X',
+                songName:"To Zanarkand",
+                year: '2001',
+                file: 'FFXToZanarkand',
+                waveColor: 'Purple',
+                progressColor: 'Blue'
+            },
+            {
+                gameName: 'Fable',
+                songName:"Knothole Glade",
+                year: '2004',
+                file: 'FableKnotwood',
+                waveColor: 'Green',
+                progressColor: 'White'
+            },
+
+            {
+                gameName: 'The Legend Of Zelda: The Wind Waker',
+                songName:"Dragon Roost Island",
+                year: '2002',
+                file: 'WindWaker',
+                waveColor: 'Purple',
+                progressColor: 'White'
+            },
+            {
+                gameName: 'Skyrim',
+                songName:"One They Fear",
+                year: '2011',
+                file: 'SkyrimOneTheyFear',
+                waveColor: 'Grey',
+                progressColor: 'Black'
+            },
+            {
+                gameName: 'Mass Effect 2',
+                songName:"The Illusive Man",
+                year: '2010',
+                file: 'ME2TheIllusiveMan',
+                waveColor: 'Green',
+                progressColor: 'Grey'
+            },
+            {
+                gameName: 'The Last of Us',
+                songName:"The Last of Us",
+                year: '2013',
+                file: 'TheLastOfUs',
+                waveColor: 'Black',
+                progressColor: 'White'
+            },
+            {
+                gameName: 'Super Mario Odyssey',
+                songName:"Title Theme",
+                year: '2017',
+                file: 'MarioOdysseyTitleTheme',
+                waveColor: 'Red',
+                progressColor: 'White'
             }
         ];
+        
+        let index = window.location.pathname.replace('/', '');
+        index = index === '' ? 0 : parseInt(index);
+        const obj = songs[index];
 
         const wavesurfer = WaveSurfer.create({
             container: '#waveform',
-            waveColor: 'violet',
-            progressColor: 'purple'
+            waveColor: obj.waveColor,
+            progressColor: obj.progressColor
         });
 
-        wavesurfer.load('/music/WindWaker.wav');
+        gameName.innerHTML = obj.gameName;
+        songName.innerHTML = obj.songName;
+        year.innerHTML = obj.year;
+
+        wavesurfer.load(`/music/${obj.file}.wav`);
         wavesurfer.on('ready', () => {
-            //wavesurfer.play();
+            wavesurfer.play();
         });
     </script>
 </body>
